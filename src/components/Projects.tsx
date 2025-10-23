@@ -2,15 +2,17 @@
 import { useState } from "react";
 import { Code, Palette, Smartphone, Github, X } from "lucide-react";
 
-type Project = {
+// Định nghĩa type rõ ràng
+interface Project {
   title: string;
   description: string;
   tech: string[];
   image: "code" | "phone" | "outdoor";
   github?: string;
   video?: string;
-};
+}
 
+// Dùng :Project[] thay vì as const
 const projects: Project[] = [
   {
     title: "E-Commerce Platform",
@@ -46,19 +48,22 @@ export default function Projects() {
     <section id="projects" className="py-20 px-6 bg-white relative">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center mb-4 text-slate-900">Featured Projects</h2>
-        <p className="text-center text-slate-600 mb-16 text-lg">Recent work showcasing design and full-stack engineering</p>
+        <p className="text-center text-slate-600 mb-16 text-lg">
+          Recent work showcasing design and full-stack engineering
+        </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((p) => (
-            <div key={p.title} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2">
-              {/* Thumbnail */}
+            <div
+              key={p.title}
+              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2"
+            >
               <div className="h-48 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
                 {p.image === "code" && <Code className="w-24 h-24 text-emerald-400 opacity-50" />}
                 {p.image === "phone" && <Smartphone className="w-24 h-24 text-blue-400 opacity-50" />}
                 {p.image === "outdoor" && <Palette className="w-24 h-24 text-purple-400 opacity-50" />}
               </div>
 
-              {/* Info */}
               <div className="p-6 space-y-4">
                 <h3 className="text-xl font-bold text-slate-900">{p.title}</h3>
                 <p className="text-slate-600">{p.description}</p>
@@ -71,7 +76,6 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* Actions */}
                 <div className="flex gap-3 pt-4">
                   {p.github && (
                     <a
@@ -92,7 +96,10 @@ export default function Projects() {
                       Demo
                     </button>
                   ) : (
-                    <button disabled className="flex-1 bg-gray-300 text-gray-600 px-4 py-2 rounded-lg font-medium cursor-not-allowed">
+                    <button
+                      disabled
+                      className="flex-1 bg-gray-300 text-gray-600 px-4 py-2 rounded-lg font-medium cursor-not-allowed"
+                    >
                       Demo
                     </button>
                   )}
@@ -103,19 +110,31 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Video Modal */}
       {openVideo && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 animate-fadeIn" onClick={() => setOpenVideo(null)}>
-          <div className="relative w-[90%] max-w-3xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-700" onClick={(e) => e.stopPropagation()}>
-            <iframe src={openVideo} title="Demo video" allow="autoplay; fullscreen" className="w-full h-full" />
-            <button onClick={() => setOpenVideo(null)} className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition">
+        <div
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 animate-fadeIn"
+          onClick={() => setOpenVideo(null)}
+        >
+          <div
+            className="relative w-[90%] max-w-3xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-700"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <iframe
+              src={openVideo}
+              title="Demo video"
+              allow="autoplay; fullscreen"
+              className="w-full h-full"
+            ></iframe>
+            <button
+              onClick={() => setOpenVideo(null)}
+              className="absolute top-3 right-3 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition"
+            >
               <X className="w-5 h-5" />
             </button>
           </div>
         </div>
       )}
 
-      {/* Small fade animation */}
       <style jsx>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: scale(0.95); }
