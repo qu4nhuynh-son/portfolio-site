@@ -34,7 +34,7 @@ const projects = [
     tech: ["Next.js", "Redis", "Apollo", "GraphQL", "Tailwind"],
     image: "outdoor",
   },
-] as const;
+} satisfies Project[];
 
 export default function Projects() {
   const [openVideo, setOpenVideo] = useState<string | null>(null);
@@ -86,6 +86,7 @@ export default function Projects() {
 
                 {/* Actions */}
                 <div className="flex gap-3 pt-4">
+                  {p.github && (
                   <a
                     href={p.github || "#"}
                     target="_blank"
@@ -95,6 +96,7 @@ export default function Projects() {
                     <Github className="w-4 h-4" />
                     Code
                   </a>
+                  )}
                   {p.video ? (
                     <button
                       onClick={() => setOpenVideo(p.video)}
