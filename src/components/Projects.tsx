@@ -2,6 +2,15 @@
 import { useState } from "react";
 import { Code, Palette, Smartphone, Github, X } from "lucide-react";
 
+type Project = {
+  title: string;
+  description: string;
+  tech: string[];
+  image: "code" | "phone" | "outdoor";
+  github?: string;
+  video?: string;
+};
+
 const projects = [
   {
     title: "E-Commerce Platform",
