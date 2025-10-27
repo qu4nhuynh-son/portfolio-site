@@ -38,6 +38,8 @@ const projects: Project[] = [
       "A real-time football analytics platform that streams live scores, match stats, and team insights using GraphQL and Redis cache for ultra-low latency updates.",
     tech: ["Next.js", "Redis", "Apollo", "GraphQL", "Tailwind"],
     image: "outdoor",
+    github: "https://github.com/qu4nhuynh-son/KickOff",
+    video: "https://www.youtube.com/embed/AddEm6Bv4ag?autoplay=1",
   },
 ];
 
